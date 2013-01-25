@@ -1,0 +1,22 @@
+{
+  "name": "cachetree",
+  "description": "A scoped, fluent API for easily interacting with hierarchical, key-value data",
+  "version": "0.0.1",
+  "author": "David Wood <bitprobe@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/davidwood/cachetree.git"
+  },
+  "keywords": ["cache", "tree", "hierarchy", "scoped", "key-value", "keyvalue", "hash", "dict", "dictionary"],
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "main": "./index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+}
+
