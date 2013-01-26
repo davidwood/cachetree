@@ -17,7 +17,7 @@ The following storage backends are available:
 
 ### Developing Additional Backends
 
-Storage backends are simply objects that expose the following functions:
+Storage backends extend EventEmitter and expose the following functions:
 
 * `get(key, field, [field …], cb)`: Get the values of all the given hash fields 
 * `set(key, field, value, [field, value …], cb)`: Set the values of given hash fields

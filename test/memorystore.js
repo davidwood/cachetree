@@ -10,6 +10,12 @@ describe('MemoryStore', function() {
     store = cachetree().store;
   });
 
+  it('should be an EventEmitter', function(done) {
+    assert.equal(typeof store.emit, 'function');
+    store.on('done', done);
+    store.emit('done');
+  });
+
   describe('.get(key, field, cb)', function() {
     
     before(function() {
