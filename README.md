@@ -37,12 +37,11 @@ var cachetree = require('cachetree'),
 
 The Cachetree module export a single contstructor function that accepts two optional arguments and returns a Cachtree instance.
 
-`cachetree(store, options)`
+`cachetree(key, store, useProperties)`
 
 * `store`: Storage backend instance
+* `key`: Root cache key, defaults to `cache`
 * `options`: An object containing the following configuration options:
-    * `prefix`: Cache key prefix, defaults to `cache`
-    * `delimiter`: Cache key delimiter, defaults to `:`
     * `useProperties`: Use properties (and not functions) for explicit scope, defaults to `false`
 
 ## Running Tests

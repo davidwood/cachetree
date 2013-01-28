@@ -51,6 +51,14 @@ describe('MemoryStore', function() {
       });
     });
 
+    it('should accept an array for the key', function(done) {
+      store.get(['icao'], 'charlie', function(err, value) {
+        assert.ok(!err);
+        assert.equal(value, 'dash dot dash dot');
+        done();
+      });
+    });
+
     it('should return undefined if a single field is specified but does not exist', function(done) {
       store.get('icao', 'echo', function(err, value) {
         assert.ok(!err);
@@ -111,6 +119,15 @@ describe('MemoryStore', function() {
 
     it('should accept single field and value arguments', function(done) {
       store.set('icao', 'alpha', 'dot dash', function(err, updated) {
+        assert.ok(!err);
+        assert.equal(updated, 1);
+        assert.deepEqual(store._data, { icao: { alpha: 'dot dash' } });
+        done();
+      });
+    });
+
+    it('should accept an array for the key', function(done) {
+      store.set(['icao'], 'alpha', 'dot dash', function(err, updated) {
         assert.ok(!err);
         assert.equal(updated, 1);
         assert.deepEqual(store._data, { icao: { alpha: 'dot dash' } });
@@ -267,6 +284,14 @@ describe('MemoryStore', function() {
       });
     });
 
+    it('should accept an array for the key', function(done) {
+      store.exists(['icao'], 'bravo', function(err, exists) {
+        assert.ok(!err);
+        assert.equal(exists, true);
+        done();
+      });
+    });
+
     it('should return true if the field exists', function(done) {
       store.exists('icao', 'bravo', function(err, exists) {
         assert.ok(!err);
@@ -314,6 +339,15 @@ describe('MemoryStore', function() {
 
     it('should accept a single field', function(done) {
       store.del('icao', 'alpha', function(err, deleted) {
+        assert.ok(!err);
+        assert.equal(deleted, 1);
+        assert.deepEqual(store._data, { icao: { bravo: 'dash dot dot dot', charlie: 'dash dot dash dot', delta: 'dash dot dot' } });
+        done();
+      });
+    });
+
+    it('should accept an array for the key', function(done) {
+      store.del(['icao'], 'alpha', function(err, deleted) {
         assert.ok(!err);
         assert.equal(deleted, 1);
         assert.deepEqual(store._data, { icao: { bravo: 'dash dot dot dot', charlie: 'dash dot dash dot', delta: 'dash dot dot' } });
@@ -382,6 +416,15 @@ describe('MemoryStore', function() {
 
     it('should accept a single field', function(done) {
       store.flush('icao', 'alpha', function(err, flushed) {
+        assert.ok(!err);
+        assert.equal(flushed, 1);
+        assert.deepEqual(store._data, { 'icao:more': { charlie: 'dash dot dash dot', delta: 'dash dot dot' }, itu: { echo: 'dot', foxtrot: 'dot dot dash dot' }, 'alpha:icao': { golf: 'dash dash dot', hotel: 'dot dot dot dot' } });
+        done();
+      });
+    });
+
+    it('should accept an array for they key', function(done) {
+      store.flush(['icao'], 'alpha', function(err, flushed) {
         assert.ok(!err);
         assert.equal(flushed, 1);
         assert.deepEqual(store._data, { 'icao:more': { charlie: 'dash dot dash dot', delta: 'dash dot dot' }, itu: { echo: 'dot', foxtrot: 'dot dot dash dot' }, 'alpha:icao': { golf: 'dash dash dot', hotel: 'dot dot dot dot' } });

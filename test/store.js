@@ -3,7 +3,7 @@ var assert    = require('assert'),
     cachetree = require('../'),
     noop      = function() {};
 
-describe('cachetree', function() {
+describe('Cachetree', function() {
 
   describe('.isStore(store)', function() {
 
