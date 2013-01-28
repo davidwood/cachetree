@@ -32,12 +32,12 @@ To create a new Cachetree instance:
 
 ```
 var cachetree = require('cachetree'),
-    cache = new cachetree();
+    cache = cachetree();
 ```
 
 The Cachetree module export a single contstructor function that accepts two optional arguments and returns a Cachtree instance.
 
-`cachetree(key, store, useProperties)`
+`cachetree(store, key, useProperties)`
 
 * `store`: Storage backend instance
 * `key`: Root cache key, defaults to `cache`
@@ -46,5 +46,5 @@ The Cachetree module export a single contstructor function that accepts two opti
 
 ## Running Tests
 
-Cachetree tests require [Mocha](http://visionmedia.github.com/mocha/) and can be run with either `npm test` or `make test`.  You can specify Mocha options, such as the reporter, by adding a [mocha.opts](http://visionmedia.github.com/mocha/#mocha.opts) file, which is ignored by git.
+Cachetree tests require [Mocha](http://visionmedia.github.com/mocha/) and can be run with either `npm test` or `make test`.  You can specify Mocha options, such as the reporter, by adding a [mocha.opts](http://visionmedia.github.com/mocha/#mocha.opts) file, which is ignored by git, to the `test` directory.
  
