@@ -1,7 +1,8 @@
 /*global describe: true, it:true, beforeEach: true, afterEach: true, before: true, after: true */
-var assert    = require('assert'),
-    cachetree = require('../'),
-    noop      = function() {};
+var assert      = require('assert'),
+    cachetree   = require('../'),
+    MemoryStore = cachetree.MemoryStore,
+    noop        = function() {};
 
 describe('MemoryStore', function() {
 
@@ -14,6 +15,11 @@ describe('MemoryStore', function() {
     assert.equal(typeof store.emit, 'function');
     store.on('done', done);
     store.emit('done');
+  });
+
+  it('should accept a custom delimiter', function() {
+    var inst = new MemoryStore('-');
+    assert.equal(inst.delimiter, '-');
   });
 
   describe('.get(key, field, cb)', function() {
@@ -448,6 +454,21 @@ describe('MemoryStore', function() {
         assert.deepEqual(store._data, { itu: { echo: 'dot', foxtrot: 'dot dot dash dot' }, 'alpha:icao': { golf: 'dash dash dot', hotel: 'dot dot dot dot' } });
         done();
       });
+    });
+
+  });
+
+  describe('.cacheKey(key)', function() {
+    
+    it('should return an array concatenated with delimiter', function() {
+      assert.equal(store.cacheKey(['alpha', 'bravo']), 'alpha:bravo');
+      var inst = new MemoryStore('-');
+      assert.equal(inst.cacheKey(['alpha', 'bravo']), 'alpha-bravo');
+    });
+
+    it('should return the value if a string or number', function() {
+      assert.equal(store.cacheKey(['alpha', 'bravo']), 'alpha:bravo');
+      assert.equal(store.cacheKey(1234), 1234);
     });
 
   });
