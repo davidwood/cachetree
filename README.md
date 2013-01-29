@@ -1,4 +1,4 @@
-# Cachetree
+# Cachetree [![Build Status](https://secure.travis-ci.org/davidwood/cachetree.png)](http://travis-ci.org/davidwood/cachetree)
 
 Cachetree provides a scoped, fluent API for easily interacting with hierarchical, key-value data.  Cachetree was developed to provide an API for hierarchical data caching (hence the name), but can be used to interact with any hash data that can be organized into a tree-like structure.
 
