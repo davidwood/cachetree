@@ -73,13 +73,13 @@ describe('hash', function() {
 
     it('should accept a name and definition object with key', function() {
       var cache = cachetree();
-      cache.add('alpha', { key: 'bravo' });
+      cache.add('alpha', { __key__: 'bravo' });
       isHash(cache.alpha(), ['cache', 'bravo']);
     });
 
     it('should accept an object', function() {
       var cache = cachetree();
-      cache.add({ alpha: { key: 'bravo' }, charlie: 'delta' });
+      cache.add({ alpha: { __key__: 'bravo' }, charlie: 'delta' });
       isHash(cache.alpha(), ['cache', 'bravo']);
       isHash(cache.charlie(), ['cache', 'delta']);
     });
@@ -147,7 +147,7 @@ describe('hash', function() {
       var cache = cachetree(),
           hash,
           err;
-      cache.add('alpha', { validate: function(val) { return val === 'bravo'; } });
+      cache.add('alpha', { __validate__: function(val) { return val === 'bravo'; } });
       try {
         cache.alpha('charlie');
       } catch (e) {
@@ -163,7 +163,7 @@ describe('hash', function() {
       var cache = cachetree(),
           hash,
           err;
-      cache.add('alpha', { validate: /^br.*$/i });
+      cache.add('alpha', { __validate__: /^br.*$/i });
       try {
         cache.alpha('charlie');
       } catch (e) {
@@ -188,17 +188,17 @@ describe('hash', function() {
           err;
       cache.add({
         alpha: {
-          key: 'alpha',
+          __key__: 'alpha',
           bravo: {
             charlie: {}
           },
           delta: {
-            validate: function(val) { return val === 'foxtrot'; },
+            __validate__: function(val) { return val === 'foxtrot'; },
             echo: 'echo'
           }
         },
         golf: {
-          key: 'golf',
+          __key__: 'golf',
           bravo: /^hotel$/i
         }
       });
