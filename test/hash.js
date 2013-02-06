@@ -175,6 +175,24 @@ describe('hash', function() {
       isHash(hash);
     });
 
+    it('should accept an object with a key prefix as a string', function() {
+      var cache = cachetree(),
+          hash,
+          err;
+      cache.add('alpha', { __prefix__: 'bravo-' });
+      hash = cache.alpha('charlie');
+      isHash(hash, ['cache', 'bravo-charlie']);
+    });
+
+    it('should accept an object with a key prefix as a number', function() {
+      var cache = cachetree(),
+          hash,
+          err;
+      cache.add('alpha', { __prefix__: 123 });
+      hash = cache.alpha('charlie');
+      assert.deepEqual(hash.key, ['cache', '123charlie']);
+    });
+
     it('should create a child hash that can be extended', function() {
       var cache = cachetree(),
           hash;
