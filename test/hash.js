@@ -16,6 +16,7 @@ function isHash(obj, key) {
   assert.equal(typeof obj.flush, 'function');
   assert.equal(typeof obj.add, 'function');
   assert.equal(typeof obj.childKey, 'function');
+  assert.equal(typeof obj.fields, 'function');
   if (Array.isArray(key)) {
     assert.deepEqual(obj.key, key);
   }

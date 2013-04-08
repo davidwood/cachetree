@@ -8,7 +8,7 @@ describe('Cachetree', function() {
   describe('.isStore(store)', function() {
 
     it('should return true if an object implements the store interface', function() {
-      var obj = { get: noop, set: noop, keys: noop, exists: noop, del: noop, flush: noop };
+      var obj = { get: noop, set: noop, keys: noop, exists: noop, del: noop, flush: noop, fields: noop };
       assert.equal(cachetree.isStore(obj), true);
     });
 

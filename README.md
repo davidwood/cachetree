@@ -25,6 +25,7 @@ Storage backends extend EventEmitter and expose the following functions:
 * `exists(key, field, cb)`: Determine if a hash field exists
 * `del(key, field, [field …], cb)`: Delete one or more hash fields
 * `flush(key, [key …], cb)`: Delete one or more hashes
+* `fields(key, cb)`: List fields in a hash
 
 ## Usage
 

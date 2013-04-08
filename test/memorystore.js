@@ -445,4 +445,60 @@ describe('MemoryStore', function() {
 
   });
 
+  describe('.fields(key, cb)', function() {
+
+    before(function() {
+      store._data['icao'] = {
+        alpha: 'dot dash',
+        bravo: 'dash dot dot dot',
+        charlie: 'dash dot dash dot',
+        delta: 'dash dot dot'
+      };
+    });
+
+    after(function() {
+      store._data = {};
+    });
+
+    it('should return self for chaining', function() {
+      assert.strictEqual(store.fields(), store);
+    });
+
+    it('should return an error if the key is not defined', function(done) {
+      store.fields(function(err) {
+        assert.ok(err instanceof Error);
+        assert.equal(err.message, 'Invalid key');
+        done();
+      });
+    });
+
+    it('should accept an array for the key', function(done) {
+      store.fields(['icao'], function(err, fields) {
+        assert.ok(!err);
+        assert.ok(Array.isArray(fields));
+        assert.deepEqual(fields, ['alpha', 'bravo', 'charlie', 'delta']);
+        done();
+      });
+    });
+
+    it('should return an array of fields keys', function(done) {
+      store.fields('icao', function(err, fields) {
+        assert.ok(!err);
+        assert.ok(Array.isArray(fields));
+        assert.deepEqual(fields, ['alpha', 'bravo', 'charlie', 'delta']);
+        done();
+      });
+    });
+
+    it('should return any empty array if no fields exist', function(done) {
+      store.fields('itu', function(err, fields) {
+        assert.ok(!err);
+        assert.ok(Array.isArray(fields));
+        assert.equal(fields.length, 0);
+        done();
+      });
+    });
+
+  });
+
 });
