@@ -1,7 +1,7 @@
 {
   "name": "cachetree",
   "description": "A scoped, fluent API for easily interacting with hierarchical, key-value data",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "David Wood <bitprobe@gmail.com>",
   "repository": {
     "type": "git",
