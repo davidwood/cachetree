@@ -1,6 +1,6 @@
 /*global describe: true, it:true, beforeEach: true, afterEach: true, before: true, after: true */
-var assert      = require('assert'),
-    cachetree   = require('../'),
+var assert = require('assert'),
+    cachetree = require('../'),
     MemoryStore = cachetree.MemoryStore;
 
 describe('MemoryStore', function() {
@@ -10,9 +10,18 @@ describe('MemoryStore', function() {
     store = cachetree().store;
   });
 
-  it('should accept a custom delimiter', function() {
-    var inst = new MemoryStore({ delimiter: '-' });
-    assert.equal(inst.delimiter, '-');
+  describe('new MemoryStore(options)', function() {
+
+    it('should not require new to be constructed', function() {
+      var inst = MemoryStore({ client: store.client });
+      assert.strictEqual(inst instanceof MemoryStore, true);
+    });
+
+    it('should accept a custom delimiter', function() {
+      var inst = new MemoryStore({ delimiter: '-' });
+      assert.equal(inst.delimiter, '-');
+    });
+
   });
 
   describe('.get(key, field, cb)', function() {
