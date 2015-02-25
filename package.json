@@ -9,14 +9,15 @@
   },
   "keywords": ["cache", "tree", "hierarchy", "scoped", "key-value", "keyvalue", "hash", "dict", "dictionary"],
   "devDependencies": {
-    "mocha": "*"
+    "istanbul": "^0.3.6",
+    "mocha": "^2.1.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "NODE_ENV=test istanbul test _mocha -- --check-leaks --reporter spec"
   },
   "main": "./index.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   }
 }
 
