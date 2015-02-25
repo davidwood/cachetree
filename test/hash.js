@@ -1,7 +1,8 @@
 /*global describe: true, it:true, beforeEach: true, afterEach: true, before: true, after: true */
-var assert    = require('assert'),
+var assert = require('assert'),
+    EventEmitter = require('events').EventEmitter,
     cachetree = require('../'),
-    noop      = function() {};
+    noop = function() {};
 
 /**
  * Validate an object as a hash
@@ -24,7 +25,14 @@ function isHash(obj, key) {
 
 describe('hash', function() {
 
-  describe('childKey(key)', function() {
+  it('should be an EventEmitter', function(done) {
+    var cache = cachetree();
+    assert.strictEqual(cache instanceof EventEmitter, true);
+    cache.on('test', done);
+    cache.emit('test');
+  });
+
+  describe('.childKey(key)', function() {
     
     var cache;
     before(function() {
